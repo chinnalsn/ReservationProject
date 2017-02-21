@@ -229,7 +229,7 @@
 				TargetAttributes = {
 					94D557941E57D358002CA679 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 48B58UF4LW;
+						DevelopmentTeam = GN9AVHU6Y9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -459,11 +459,11 @@
 			baseConfigurationReference = 40D582A279EBEA6BED888027 /* Pods-Reservation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 48B58UF4LW;
+				DEVELOPMENT_TEAM = GN9AVHU6Y9;
 				INFOPLIST_FILE = Reservation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.barnesandnoblellc.B-N-eReader.DBG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reservation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -473,11 +473,11 @@
 			baseConfigurationReference = 0D2217C5114774802B656C87 /* Pods-Reservation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 48B58UF4LW;
+				DEVELOPMENT_TEAM = GN9AVHU6Y9;
 				INFOPLIST_FILE = Reservation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.barnesandnoblellc.B-N-eReader.DBG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reservation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

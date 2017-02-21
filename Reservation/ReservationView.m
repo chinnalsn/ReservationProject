@@ -9,6 +9,8 @@
 #import "ReservationView.h"
 #import "ionicons/IonIcons.h"
 
+//Custome view to display reservation details
+
 @implementation ReservationView
 
 + (ReservationView *)reservationView {
