@@ -2,7 +2,7 @@
 //  Reservation+CoreDataProperties.h
 //  
 //
-//  Created by Chinna on 2/20/17.
+//  Created by Chinna on 2/25/17.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -17,11 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<Reservation *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *dateInStringFormat;
-@property (nullable, nonatomic, copy) NSString *time;
-@property (nullable, nonatomic, copy) NSString *serviceName;
-@property (nonatomic) int32_t partySize;
 @property (nullable, nonatomic, copy) NSString *partyDuration;
+@property (nonatomic) int32_t partySize;
 @property (nullable, nonatomic, copy) NSString *serviceDescription;
+@property (nullable, nonatomic, copy) NSString *serviceName;
+@property (nullable, nonatomic, copy) NSString *time;
 
 @end
 

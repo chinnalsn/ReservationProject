@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ServiceDaysViewControllerDelegate <NSObject>
+
+- (void)selectedDateInStringFormat:(NSString *)dateString;
+
+@end
+
 @interface ServiceDaysViewController : UIViewController
+
+@property (weak, nonatomic) id<ServiceDaysViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *viewCalenderButton;
+
+- (void)getDatesForMonth:(NSInteger) month;
 
 @end

@@ -2,7 +2,7 @@
 //  Reservation+CoreDataProperties.m
 //  
 //
-//  Created by Chinna on 2/20/17.
+//  Created by Chinna on 2/25/17.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -16,10 +16,10 @@
 }
 
 @dynamic dateInStringFormat;
-@dynamic time;
-@dynamic serviceName;
-@dynamic partySize;
 @dynamic partyDuration;
+@dynamic partySize;
 @dynamic serviceDescription;
+@dynamic serviceName;
+@dynamic time;
 
 @end

@@ -12,13 +12,16 @@
 		943582D51E5A9AEB00C5EADE /* DayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943582D41E5A9AEB00C5EADE /* DayView.m */; };
 		943582D81E5ABEC900C5EADE /* TimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943582D71E5ABEC900C5EADE /* TimeView.m */; };
 		943582DA1E5ABEDF00C5EADE /* TimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 943582D91E5ABEDF00C5EADE /* TimeView.xib */; };
+		943582F31E5E984700C5EADE /* ServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943582F21E5E984700C5EADE /* ServiceView.m */; };
+		943582F61E5EBE7E00C5EADE /* ReservationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 943582F51E5EBE7E00C5EADE /* ReservationUtilities.m */; };
+		943583001E6233CC00C5EADE /* hot-stone.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 943582FF1E6233CC00C5EADE /* hot-stone.tiff */; };
+		943583181E6296E700C5EADE /* CalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943583171E6296E700C5EADE /* CalenderViewController.m */; };
 		94D5579A1E57D358002CA679 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557991E57D358002CA679 /* main.m */; };
 		94D5579D1E57D358002CA679 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5579C1E57D358002CA679 /* AppDelegate.m */; };
 		94D557A31E57D358002CA679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94D557A11E57D358002CA679 /* Main.storyboard */; };
 		94D557A61E57D358002CA679 /* Reservation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94D557A41E57D358002CA679 /* Reservation.xcdatamodeld */; };
 		94D557A81E57D358002CA679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94D557A71E57D358002CA679 /* Assets.xcassets */; };
 		94D557AB1E57D358002CA679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94D557A91E57D358002CA679 /* LaunchScreen.storyboard */; };
-		94D557B81E57D563002CA679 /* UIColor+Reservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557B71E57D563002CA679 /* UIColor+Reservation.m */; };
 		94D557BB1E57D6C5002CA679 /* ReservationHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557BA1E57D6C5002CA679 /* ReservationHomeViewController.m */; };
 		94D557BF1E57DBA8002CA679 /* ReservationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557BE1E57DBA8002CA679 /* ReservationView.m */; };
 		94D557C11E57DBBA002CA679 /* ReservationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D557C01E57DBBA002CA679 /* ReservationView.xib */; };
@@ -43,6 +46,13 @@
 		943582D61E5ABEC900C5EADE /* TimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeView.h; sourceTree = "<group>"; };
 		943582D71E5ABEC900C5EADE /* TimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeView.m; sourceTree = "<group>"; };
 		943582D91E5ABEDF00C5EADE /* TimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeView.xib; sourceTree = "<group>"; };
+		943582F11E5E984700C5EADE /* ServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceView.h; sourceTree = "<group>"; };
+		943582F21E5E984700C5EADE /* ServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceView.m; sourceTree = "<group>"; };
+		943582F41E5EBE7E00C5EADE /* ReservationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationUtilities.h; sourceTree = "<group>"; };
+		943582F51E5EBE7E00C5EADE /* ReservationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationUtilities.m; sourceTree = "<group>"; };
+		943582FF1E6233CC00C5EADE /* hot-stone.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "hot-stone.tiff"; sourceTree = "<group>"; };
+		943583161E6296E700C5EADE /* CalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderViewController.h; sourceTree = "<group>"; };
+		943583171E6296E700C5EADE /* CalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderViewController.m; sourceTree = "<group>"; };
 		94D557951E57D358002CA679 /* Reservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D557991E57D358002CA679 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94D5579B1E57D358002CA679 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,8 +62,6 @@
 		94D557A71E57D358002CA679 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94D557AA1E57D358002CA679 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94D557AC1E57D358002CA679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94D557B61E57D563002CA679 /* UIColor+Reservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Reservation.h"; sourceTree = "<group>"; };
-		94D557B71E57D563002CA679 /* UIColor+Reservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Reservation.m"; sourceTree = "<group>"; };
 		94D557B91E57D6C5002CA679 /* ReservationHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationHomeViewController.h; sourceTree = "<group>"; };
 		94D557BA1E57D6C5002CA679 /* ReservationHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationHomeViewController.m; sourceTree = "<group>"; };
 		94D557BD1E57DBA8002CA679 /* ReservationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationView.h; sourceTree = "<group>"; };
@@ -100,6 +108,54 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		943583011E627CE800C5EADE /* Screen1 */ = {
+			isa = PBXGroup;
+			children = (
+				94D557B91E57D6C5002CA679 /* ReservationHomeViewController.h */,
+				94D557BA1E57D6C5002CA679 /* ReservationHomeViewController.m */,
+				94D557D71E58CD45002CA679 /* ReservationsContainerViewController.h */,
+				94D557D81E58CD45002CA679 /* ReservationsContainerViewController.m */,
+				94D557BD1E57DBA8002CA679 /* ReservationView.h */,
+				94D557BE1E57DBA8002CA679 /* ReservationView.m */,
+				94D557C01E57DBBA002CA679 /* ReservationView.xib */,
+			);
+			name = Screen1;
+			sourceTree = "<group>";
+		};
+		943583021E627F1300C5EADE /* Screen2 */ = {
+			isa = PBXGroup;
+			children = (
+				94D557CE1E58351A002CA679 /* ServicesViewController.h */,
+				94D557CF1E58351A002CA679 /* ServicesViewController.m */,
+				94D557C21E5830B5002CA679 /* ServicePageItemViewController.h */,
+				94D557C31E5830B5002CA679 /* ServicePageItemViewController.m */,
+				943582F11E5E984700C5EADE /* ServiceView.h */,
+				943582F21E5E984700C5EADE /* ServiceView.m */,
+			);
+			name = Screen2;
+			sourceTree = "<group>";
+		};
+		943583031E627F1D00C5EADE /* Screen3 */ = {
+			isa = PBXGroup;
+			children = (
+				94D557DE1E592940002CA679 /* ReservationViewController.h */,
+				94D557DF1E592940002CA679 /* ReservationViewController.m */,
+				94D557E71E5989BD002CA679 /* ServiceDaysViewController.h */,
+				94D557E81E5989BD002CA679 /* ServiceDaysViewController.m */,
+				94D557EA1E598D8D002CA679 /* ServiceTimeViewController.h */,
+				94D557EB1E598D8D002CA679 /* ServiceTimeViewController.m */,
+				943582D11E5A972900C5EADE /* DayView.xib */,
+				943582D31E5A9AEB00C5EADE /* DayView.h */,
+				943582D41E5A9AEB00C5EADE /* DayView.m */,
+				943582D61E5ABEC900C5EADE /* TimeView.h */,
+				943582D71E5ABEC900C5EADE /* TimeView.m */,
+				943582D91E5ABEDF00C5EADE /* TimeView.xib */,
+				943583161E6296E700C5EADE /* CalenderViewController.h */,
+				943583171E6296E700C5EADE /* CalenderViewController.m */,
+			);
+			name = Screen3;
+			sourceTree = "<group>";
+		};
 		94D5578C1E57D358002CA679 = {
 			isa = PBXGroup;
 			children = (
@@ -121,42 +177,23 @@
 		94D557971E57D358002CA679 /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
+				943582FF1E6233CC00C5EADE /* hot-stone.tiff */,
 				94D557E11E597870002CA679 /* service1.jpg */,
 				94D557E21E597870002CA679 /* service2.jpg */,
 				94D557E31E597870002CA679 /* service3.jpg */,
-				94D557DA1E5910B8002CA679 /* Model */,
-				94D557B21E57D3E4002CA679 /* Theme */,
 				94D5579B1E57D358002CA679 /* AppDelegate.h */,
 				94D5579C1E57D358002CA679 /* AppDelegate.m */,
 				94D557A11E57D358002CA679 /* Main.storyboard */,
 				94D557A71E57D358002CA679 /* Assets.xcassets */,
 				94D557A91E57D358002CA679 /* LaunchScreen.storyboard */,
 				94D557AC1E57D358002CA679 /* Info.plist */,
-				94D557A41E57D358002CA679 /* Reservation.xcdatamodeld */,
+				94D557DA1E5910B8002CA679 /* Model */,
+				943583031E627F1D00C5EADE /* Screen3 */,
+				943583021E627F1300C5EADE /* Screen2 */,
+				943583011E627CE800C5EADE /* Screen1 */,
 				94D557981E57D358002CA679 /* Supporting Files */,
-				94D557B91E57D6C5002CA679 /* ReservationHomeViewController.h */,
-				94D557BA1E57D6C5002CA679 /* ReservationHomeViewController.m */,
-				94D557D71E58CD45002CA679 /* ReservationsContainerViewController.h */,
-				94D557D81E58CD45002CA679 /* ReservationsContainerViewController.m */,
-				94D557BD1E57DBA8002CA679 /* ReservationView.h */,
-				94D557BE1E57DBA8002CA679 /* ReservationView.m */,
-				94D557C01E57DBBA002CA679 /* ReservationView.xib */,
-				94D557CE1E58351A002CA679 /* ServicesViewController.h */,
-				94D557CF1E58351A002CA679 /* ServicesViewController.m */,
-				94D557C21E5830B5002CA679 /* ServicePageItemViewController.h */,
-				94D557C31E5830B5002CA679 /* ServicePageItemViewController.m */,
-				94D557DE1E592940002CA679 /* ReservationViewController.h */,
-				94D557DF1E592940002CA679 /* ReservationViewController.m */,
-				94D557E71E5989BD002CA679 /* ServiceDaysViewController.h */,
-				94D557E81E5989BD002CA679 /* ServiceDaysViewController.m */,
-				94D557EA1E598D8D002CA679 /* ServiceTimeViewController.h */,
-				94D557EB1E598D8D002CA679 /* ServiceTimeViewController.m */,
-				943582D11E5A972900C5EADE /* DayView.xib */,
-				943582D31E5A9AEB00C5EADE /* DayView.h */,
-				943582D41E5A9AEB00C5EADE /* DayView.m */,
-				943582D61E5ABEC900C5EADE /* TimeView.h */,
-				943582D71E5ABEC900C5EADE /* TimeView.m */,
-				943582D91E5ABEDF00C5EADE /* TimeView.xib */,
+				943582F41E5EBE7E00C5EADE /* ReservationUtilities.h */,
+				943582F51E5EBE7E00C5EADE /* ReservationUtilities.m */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -169,18 +206,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		94D557B21E57D3E4002CA679 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				94D557B61E57D563002CA679 /* UIColor+Reservation.h */,
-				94D557B71E57D563002CA679 /* UIColor+Reservation.m */,
-			);
-			name = Theme;
-			sourceTree = "<group>";
-		};
 		94D557DA1E5910B8002CA679 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94D557A41E57D358002CA679 /* Reservation.xcdatamodeld */,
 				94D557DB1E5910E4002CA679 /* Service.h */,
 				94D557DC1E5910E4002CA679 /* Service.m */,
 			);
@@ -261,6 +290,7 @@
 				943582DA1E5ABEDF00C5EADE /* TimeView.xib in Resources */,
 				94D557C11E57DBBA002CA679 /* ReservationView.xib in Resources */,
 				94D557A81E57D358002CA679 /* Assets.xcassets in Resources */,
+				943583001E6233CC00C5EADE /* hot-stone.tiff in Resources */,
 				94D557E61E597870002CA679 /* service3.jpg in Resources */,
 				94D557A31E57D358002CA679 /* Main.storyboard in Resources */,
 				943582D21E5A972900C5EADE /* DayView.xib in Resources */,
@@ -324,10 +354,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94D557B81E57D563002CA679 /* UIColor+Reservation.m in Sources */,
+				943583181E6296E700C5EADE /* CalenderViewController.m in Sources */,
 				94D5579D1E57D358002CA679 /* AppDelegate.m in Sources */,
 				943582D81E5ABEC900C5EADE /* TimeView.m in Sources */,
 				94D557A61E57D358002CA679 /* Reservation.xcdatamodeld in Sources */,
+				943582F31E5E984700C5EADE /* ServiceView.m in Sources */,
 				94D557BB1E57D6C5002CA679 /* ReservationHomeViewController.m in Sources */,
 				94D557E01E592940002CA679 /* ReservationViewController.m in Sources */,
 				94D557D01E58351A002CA679 /* ServicesViewController.m in Sources */,
@@ -338,6 +369,7 @@
 				94D557C41E5830B5002CA679 /* ServicePageItemViewController.m in Sources */,
 				943582D51E5A9AEB00C5EADE /* DayView.m in Sources */,
 				94D557BF1E57DBA8002CA679 /* ReservationView.m in Sources */,
+				943582F61E5EBE7E00C5EADE /* ReservationUtilities.m in Sources */,
 				94D557E91E5989BD002CA679 /* ServiceDaysViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,31 +8,41 @@
 
 #import "ServiceDaysViewController.h"
 #import "DayView.h"
+#import "ReservationUtilities.h"
 
 @interface ServiceDaysViewController ()
 @property (weak, nonatomic) IBOutlet UIView *daysContainerView;
 @property (nonatomic, assign) NSInteger numberOfDaysInCurrentMonth;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
-@property (strong, nonatomic) NSArray *weekDays;
-@property (strong, nonatomic) NSArray *months;
+@property (strong, nonatomic) NSMutableArray *displayDates;
+@property (strong, nonatomic) UIButton *previousSelectedButton;
+@property (strong, nonatomic) NSDate *selectedDate;
 @end
 
 @implementation ServiceDaysViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.weekDays = @[@"MON", @"TUE", @"WED", @"THU", @"FRI", @"SAT", @"SUN"];
-    self.months = @[@"January", @"February", @"March", @"April", @"May", @"June", @"July", @"August", @"September", @"October", @"November", @"December"];
-    
-    [self getDatesForMonth:4];
-    [self addDays];
-    
+    self.displayDates = [[NSMutableArray alloc]init];
+
+    self.selectedDate = [NSDate date];
+    [self updateDatesForSelectedDate];
 }
 
-- (void)displayDaysForMonth:(NSInteger) month {
+- (void)updateDatesForSelectedDate {
     
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self.selectedDate];
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"MMMM"];
+    
+    self.monthLabel.text = [[dateFormatter stringFromDate:self.selectedDate] uppercaseString];
+    
+    self.numberOfDaysInCurrentMonth = range.length;
+
+    [self addDays];
+
 }
 
 - (void)getDatesForMonth:(NSInteger) month {
@@ -43,15 +53,17 @@
     [components setYear:2017];
     [components setMonth:month];
     
-    NSDate *date = [calendar dateFromComponents:components];
-    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
+    self.selectedDate = [calendar dateFromComponents:components];
     
-    self.numberOfDaysInCurrentMonth = range.length;
+    [self updateDatesForSelectedDate];
+    
 }
-
 
 - (void)addDays {
     
+    [[self.daysContainerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.displayDates removeAllObjects];
+
     if (self.numberOfDaysInCurrentMonth == 0) {
         return;
     }
@@ -59,39 +71,38 @@
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     NSMutableString * horzontalConstraintString = [NSMutableString stringWithFormat:@"H:|"];
     
-    for (int i = 0; i<self.numberOfDaysInCurrentMonth; i++) {
-        
+    for (int day = 1; day<=self.numberOfDaysInCurrentMonth; day++) {
+    
         NSCalendar *calendar = [NSCalendar currentCalendar];
-        NSDateComponents *components = [[NSDateComponents alloc] init];
+        NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:self.selectedDate];
+        components.day = day;
         
-        [components setYear:2017];
-        [components setMonth:4];
-        [components setDay:i];
+        NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
+        [weekday setDateFormat: @"EE"];
+
+        NSDate *dateInCurrentMonth = [calendar dateFromComponents:components];
         
-        NSDate *date = [calendar dateFromComponents:components];
-        NSDateComponents* comp = [calendar components:NSCalendarUnitWeekday fromDate:date];
-        
-        
+        [self.displayDates addObject:dateInCurrentMonth];
+       
         DayView *dayView = [DayView getDayView];
-        int index = i+1;
         
-        if (index< 10) {
-            dayView.dateLabel.text = [NSString stringWithFormat:@"0%d",index];
+        if (day< 10) {
+            dayView.dateLabel.text = [NSString stringWithFormat:@"0%d",day];
         }
         else {
-            dayView.dateLabel.text = [NSString stringWithFormat:@"%d",index];
+            dayView.dateLabel.text = [NSString stringWithFormat:@"%d",day];
         }
         
-        dayView.dayLabel.text = [self.weekDays objectAtIndex:([comp weekday] - 1)];
+        dayView.dayLabel.text = [[weekday stringFromDate:dateInCurrentMonth] uppercaseString];
         [dayView.dayDateOverlayButton addTarget:self action:@selector(dayClickAction:) forControlEvents:UIControlEventTouchUpInside];
-        dayView.dayDateOverlayButton.tag = i;
+        dayView.dayDateOverlayButton.tag = day - 1;
         
-        dayView.tag = i;
         dayView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.daysContainerView addSubview:dayView];
         
-        NSString * dayViewKey = [NSString stringWithFormat:@"dayViewKey_%d", i];
-        [horzontalConstraintString appendString:[NSString stringWithFormat:@"-10-[%@(==80)]",dayViewKey]];
+        NSString * dayViewKey = [NSString stringWithFormat:@"dayViewKey_%d", day];
+        
+        [horzontalConstraintString appendString:[NSString stringWithFormat:@"-%d-[%@(==55)]",( day == 1 ? 0 :10),dayViewKey]];
         
         [dict setObject:dayView forKey:dayViewKey];
         
@@ -100,12 +111,33 @@
     }
     
     self.daysContainerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [horzontalConstraintString appendString:@"-10-|"];
+    [horzontalConstraintString appendString:@"-0-|"];
     [self.daysContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horzontalConstraintString options:0 metrics:0 views:dict]];
 }
 
 - (void)dayClickAction:(UIButton *)button {
+    if (self.previousSelectedButton && ![self.previousSelectedButton isEqual:button]) {
+        [ReservationUtilities removeCheckmarkOutlineIcon:self.previousSelectedButton];
+    }
+    if ([button isSelected])
+    {
+        [self.delegate selectedDateInStringFormat:nil];
+        [ReservationUtilities removeCheckmarkOutlineIcon:button];
+    }
+    else
+    {
+        NSDate *selectedDate = self.displayDates[button.tag];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat: @"EEEE, MMMM dd, YYYY"];
+        
+        [self.delegate selectedDateInStringFormat:[dateFormatter stringFromDate:selectedDate]];
+        [ReservationUtilities setCheckmarkOutlineIcon:button];
+    }
     
+    self.previousSelectedButton = button;
 }
+
+
 
 @end

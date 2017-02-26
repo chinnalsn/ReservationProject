@@ -8,20 +8,23 @@
 
 #import "ServiceTimeViewController.h"
 #import "TimeView.h"
+#import "ReservationUtilities.h"
 
 @interface ServiceTimeViewController ()
 @property (weak, nonatomic) IBOutlet UIView *timeContainerView;
+@property (strong, nonatomic) NSArray *timesMatrixArray;
 @property (strong, nonatomic) NSArray *timesArray;
 @property (weak, nonatomic) IBOutlet UILabel *availableTimesLabel;
-
+@property (strong, nonatomic) UIButton *previousSelectedButton;
 @end
 
 @implementation ServiceTimeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.timesArray = @[@[@"9:00 AM", @"10:00 AM", @"11:00 AM"], @[@"12:00 PM", @"1:00 PM", @"2:00 PM"], @[@"3:00 PM", @"4:00 PM", @"5:00 PM"], @[@"6:00 PM", @"7:00 PM", @"8:00 PM"]];
+    self.timesMatrixArray = @[@[@"9:00 AM", @"10:00 AM", @"11:00 AM"], @[@"12:00 PM", @"1:00 PM", @"2:00 PM"], @[@"3:00 PM", @"4:00 PM", @"5:00 PM"], @[@"6:00 PM", @"7:00 PM", @"8:00 PM"]];
     
+    self.timesArray = @[@"9:00 AM", @"10:00 AM", @"11:00 AM", @"12:00 PM", @"1:00 PM", @"2:00 PM", @"3:00 PM", @"4:00 PM", @"5:00 PM", @"6:00 PM", @"7:00 PM", @"8:00 PM"];
     [self displayServiceTimings];
     
 }
@@ -35,15 +38,15 @@
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     NSMutableString * horzontalConstraintString = [NSMutableString stringWithFormat:@"H:|"];
     
-    for (int i = 0; i<self.timesArray.count; i++) {
+    for (int i = 0; i<self.timesMatrixArray.count; i++) {
         
-        NSArray *listOfTimesInColumn = [self.timesArray objectAtIndex:i];
+        NSArray *listOfTimesInColumn = [self.timesMatrixArray objectAtIndex:i];
         UIView *timeCloumnView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         timeCloumnView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.timeContainerView addSubview:timeCloumnView];
         
         NSString * timeCloumnViewKey = [NSString stringWithFormat:@"timeCloumnViewKey_%d", i];
-        [horzontalConstraintString appendString:[NSString stringWithFormat:@"-10-[%@(==150)]",timeCloumnViewKey]];
+        [horzontalConstraintString appendString:[NSString stringWithFormat:@"-%d-[%@(==100)]", (i == 0 ? 0 :10), timeCloumnViewKey]];
         
         [dict setObject:timeCloumnView forKey:timeCloumnViewKey];
         
@@ -72,7 +75,7 @@
         [timeCloumnView addSubview:timeRowView];
        
         NSString * timeRowViewKey = [NSString stringWithFormat:@"timeRowViewKey_%lu", ((rowTimes.count*index) + i)];
-        [verticalConstraintString appendString:[NSString stringWithFormat:@"-10-[%@(==54)]",timeRowViewKey]];
+        [verticalConstraintString appendString:[NSString stringWithFormat:@"-7-[%@(==40)]",timeRowViewKey]];
         
         [dict setObject:timeRowView forKey:timeRowViewKey];
         
@@ -81,12 +84,27 @@
     }
     
     timeCloumnView.translatesAutoresizingMaskIntoConstraints = NO;
-    [verticalConstraintString appendString:@"-(>=5)-|"];
+    [verticalConstraintString appendString:@"-7-|"];
     [timeCloumnView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintString options:0 metrics:0 views:dict]];
 }
 
 - (void)timeButtonAction:(UIButton *)button {
+    if (self.previousSelectedButton && ![self.previousSelectedButton isEqual:button]) {
+        [ReservationUtilities removeCheckmarkOutlineIcon:self.previousSelectedButton];
+    }
+    if ([button isSelected])
+    {
+        [self.delegate selectedTimeInStringFormat:nil];
+        [ReservationUtilities removeCheckmarkOutlineIcon:button];
+    }
+    else
+    {
+        [self.delegate selectedTimeInStringFormat:self.timesArray[button.tag]];
+        [ReservationUtilities setCheckmarkOutlineIcon:button];
+    }
     
+    self.previousSelectedButton = button;
 }
+
 
 @end

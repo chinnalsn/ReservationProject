@@ -7,19 +7,17 @@
 //
 
 #import "DayView.h"
-#import "ionicons/IonIcons.h"
 
 @implementation DayView
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.dayLabel.font = [IonIcons fontWithSize:20];
-    self.dateLabel.font = [IonIcons fontWithSize:30];
-    
     self.layer.borderWidth = 0.5;
-    self.layer.borderColor = [UIColor grayColor].CGColor;
+    self.layer.borderColor = [UIColor colorWithRed:247/255 green:248/255 blue:248/255 alpha:0.1].CGColor;
 }
+
 
 + (DayView *)getDayView {
     return [[[NSBundle mainBundle] loadNibNamed:@"DayView" owner:self options:nil] firstObject];

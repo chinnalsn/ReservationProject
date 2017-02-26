@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Reservation;
+
+@protocol ReservationViewControllerDelegate <NSObject>
+
+- (void)addReservation:(Reservation *)newReservation;
+
+@end
 
 @interface ReservationViewController : UIViewController
+
+@property(nonatomic, weak) id<ReservationViewControllerDelegate> delegate;
 
 @end

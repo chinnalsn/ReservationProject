@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIView *reservationsContainerView;
 @property (strong, nonatomic) UIFont *ionIconsFont;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSArray *reservationsArray;
+@property (strong, nonatomic) NSMutableArray *reservationsArray;
+@property (strong, nonatomic) ReservationView *lastReservationView;
+@property (strong, nonatomic) NSLayoutConstraint *lastReservationViewBottonConstraint;
 @end
 
 @implementation ReservationsContainerViewController
@@ -26,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addReservation:) name:@"AddReservation" object:nil];
     self.ionIconsFont = [IonIcons fontWithSize:30.0f];
     [self getAllReservations];
 }
@@ -34,12 +36,12 @@
 - (void) getAllReservations {
    
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.managedObjectContext = delegate.persistentContainer.viewContext;
+    self.managedObjectContext = delegate.managedObjectContext;
     NSError *error;
     NSAsynchronousFetchResult *storeResults = [self.managedObjectContext executeRequest:[Reservation fetchRequest] error:&error];
-    self.reservationsArray = storeResults.finalResult;
+    self.reservationsArray = [storeResults.finalResult mutableCopy];
     
-    if (self.reservationsArray.count == 0) {
+    if (self.reservationsArray.count == 100) {
         
         Reservation *reservationOne = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:self.managedObjectContext];
         
@@ -88,6 +90,7 @@
     if (self.reservationsArray.count == 0){
         return;
     }
+    [[self.reservationsContainerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     NSMutableString * verticalConstraintString = [NSMutableString stringWithFormat:@"V:|"];
@@ -100,7 +103,7 @@
         reservationView.dateLabel.text = reservationObj.dateInStringFormat;
         reservationView.timeLabel.text = reservationObj.time;
         reservationView.serviceNameLabel.text = reservationObj.serviceName;
-        reservationView.partySize.text = [NSString stringWithFormat:@"PARTY SIZE %d",reservationObj.partySize]
+        reservationView.partySize.text = [NSString stringWithFormat:@"PARTY SIZE - %d",reservationObj.partySize]
         ;
         reservationView.partyDuration.text = reservationObj.partyDuration;
         reservationView.serviceDetailsLabel.text = reservationObj.serviceDescription;
@@ -109,17 +112,31 @@
         [self.reservationsContainerView addSubview:reservationView];
         
         NSString * reservationViewKey = [NSString stringWithFormat:@"reservationViewKey_%d", i];
-        [verticalConstraintString appendString:[NSString stringWithFormat:@"-15-[%@]",reservationViewKey]];
+        [verticalConstraintString appendString:[NSString stringWithFormat:@"-13.5-[%@]",reservationViewKey]];
         
         [dict setObject:reservationView forKey:reservationViewKey];
         
-        [self.reservationsContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|-10-[%@]-10-|",reservationViewKey] options:0 metrics:0 views:dict]];
+        if (i == self.reservationsArray.count - 1) {
+            self.lastReservationView = reservationView;
+        }
+        
+        [self.reservationsContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|-9.5-[%@]-9.5-|",reservationViewKey] options:0 metrics:0 views:dict]];
         
     }
     
     self.reservationsContainerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     [verticalConstraintString appendString:@"-15-|"];
     [self.reservationsContainerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintString options:0 metrics:0 views:dict]];
+}
+
+/*
+ Update reservations list
+ */
+- (void)addReservation:(NSNotification *)notification {
+    Reservation *reservationObj = (Reservation *)[notification.userInfo objectForKey:@"reservationObj"];
+    [self.reservationsArray addObject:reservationObj];
+    [self displayAllReservations];
 }
 
 

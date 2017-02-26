@@ -12,24 +12,27 @@
 #import "ReservationViewController.h"
 #import "ionicons/IonIcons.h"
 
-@interface ServicesViewController () <UIPageViewControllerDataSource, UITableViewDelegate, UITableViewDataSource>
+#define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568 || [[UIScreen mainScreen] bounds].size.width == 568)?TRUE:FALSE
+#define isiPhone4  ([[UIScreen mainScreen] bounds].size.height == 480 || [[UIScreen mainScreen] bounds].size.width == 480)?TRUE:FALSE
+#define isiPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? YES : NO)
+
+@interface ServicesViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 
-@property (nonatomic, strong) UIPageViewController *servicesPageViewController;
-@property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
-@property (nonatomic, strong) NSArray *tableViewServicesArray;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *servicesTableViewHeightConstraint;
-
+@property (strong, nonatomic) UIPageViewController *servicesPageViewController;
+@property (strong, nonatomic) UIView *selectedPageControlIndicator;
+@property (strong, nonatomic) NSArray *tableViewServicesArray;
 @property (strong, nonatomic) NSArray *servicesList;
 
+@property (weak, nonatomic) IBOutlet UITableView *servicesTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *servicesTableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *offerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serviceNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *massageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *offerAvailableOnLabel;
 @property (weak, nonatomic) IBOutlet UIButton *reserveButton;
-
 @property (weak, nonatomic) IBOutlet UIView *pageControlContainer;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pageControlVerticalCenterConstraint;
 
 @end
 
@@ -42,11 +45,9 @@
     
     self.title = @"SPA SERVICE";
     
+    [self.reserveButton setEnabled:NO];
     self.servicesTableView.delegate = self;
     self.servicesTableView.dataSource = self;
-    
-    self.servicesTableView.estimatedRowHeight = 100;
-    self.servicesTableView.rowHeight = UITableViewAutomaticDimension;
     self.servicesTableView.backgroundColor = [UIColor clearColor];
     
     
@@ -61,21 +62,26 @@
                                                   direction:UIPageViewControllerNavigationDirectionForward
                                                    animated:NO
                                                  completion:nil];
+        
+        Service *serviceItem = self.servicesList[0];
+        [self updateServiceDetails:serviceItem];
     }
     [self setupPageControl];
+    [self updatePageControlIndicator:1];
     
     [self.servicesTableView.layer setCornerRadius:15.0];
-    
-    self.offerLabel.font = [IonIcons fontWithSize:40.0f];
-    self.serviceNameLabel.font = [IonIcons fontWithSize:21.0f];
-    self.massageLabel.font = [IonIcons fontWithSize:35.0f];
-    self.offerAvailableOnLabel.font = [IonIcons fontWithSize:15.0f];
     [self.reserveButton.layer setCornerRadius:3.0];
     self.reserveButton.userInteractionEnabled = YES;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
+    if (isiPhone4 || isiPhone5) {
+        self.servicesTableViewHeightConstraint.constant = 200;
+        if (isiPhone4) {
+            self.pageControlVerticalCenterConstraint.constant = 20;
+        }
+    }
+    else if (isiPad) {
+        self.servicesTableViewHeightConstraint.constant = 300;
+    }
 }
 
 - (void)getServiceInfo {
@@ -94,7 +100,7 @@
     if ([segueName isEqualToString: @"ServicesPageViewController"]) {
         self.servicesPageViewController = (UIPageViewController *) [segue destinationViewController];
         self.servicesPageViewController.dataSource = self;
-        
+        self.servicesPageViewController.delegate = self;
     }
 }
 
@@ -105,10 +111,10 @@
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     NSMutableString * horzontalConstraintString = [NSMutableString stringWithFormat:@"H:|"];
     
-    for (int i = 0; i<self.servicesList.count; i++) {
+    for (int i = 1; i<=self.servicesList.count; i++) {
         
         UIView *pageControlIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        [pageControlIndicator setBackgroundColor:[UIColor whiteColor]];
+        [pageControlIndicator setBackgroundColor:[UIColor grayColor]];
         
         pageControlIndicator.layer.cornerRadius = 5;
         pageControlIndicator.tag = i;
@@ -120,7 +126,8 @@
         
         [dict setObject:pageControlIndicator forKey:pageControlIndicatorKey];
         
-        [self.pageControlContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-3-[%@(==10)]-0-|",pageControlIndicatorKey] options:0 metrics:0 views:dict]];
+        [self.pageControlContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-3-[%@(==10)]",pageControlIndicatorKey] options:0 metrics:0 views:dict]];
+        
         
     }
     
@@ -142,9 +149,6 @@
     if (index == 0 || index == NSNotFound)
     {
         index = self.servicesList.count;
-    }
-    else {
-        return [self itemControllerForIndex:[self.servicesList count] - 1];
     }
     
     index -= 1;
@@ -177,12 +181,6 @@
         ServicePageItemViewController *pageItemController = [self.storyboard instantiateViewControllerWithIdentifier:@"ServicePageItemViewController"];
         pageItemController.itemIndex = itemIndex;
         Service *serviceItem = self.servicesList[itemIndex];
-        
-        self.offerLabel.text = serviceItem.offer;
-        self.serviceNameLabel.text = serviceItem.serviceName;
-        self.massageLabel.text = @"MASSAGE";
-        self.offerAvailableOnLabel.text = serviceItem.offerAvailableOn;
-        
         pageItemController.imageName = serviceItem.imageName;
         return pageItemController;
     }
@@ -190,30 +188,42 @@
     return nil;
 }
 
-#pragma mark - Additions
+// Sent when a gesture-initiated transition ends. The 'finished' parameter indicates whether the animation finished, while the 'completed' parameter indicates whether the transition completed or bailed out (if the user let go early).
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
 
-- (NSUInteger)currentControllerIndex
-{
-    ServicePageItemViewController *pageItemController = (ServicePageItemViewController *) [self currentController];
-    
-    if (pageItemController)
-    {
-        return pageItemController.itemIndex;
+    if (completed) {
+        
+        NSUInteger currentIndex = ((ServicePageItemViewController *)self.servicesPageViewController.viewControllers.firstObject).itemIndex;
+        Service *serviceItem = self.servicesList[currentIndex];
+        [self updateServiceDetails:serviceItem];
+        [self updatePageControlIndicator:currentIndex+1];
     }
-    
-    return -1;
 }
 
-- (UIViewController *)currentController
-{
-    if ([self.servicesPageViewController.viewControllers count])
-    {
-        return self.servicesPageViewController.viewControllers[0];
-    }
+- (void)updateServiceDetails:(Service *)serviceItem {
+    self.offerLabel.text = serviceItem.offer;
+    self.serviceNameLabel.text = serviceItem.serviceName;
+    self.massageLabel.text = @"MASSAGE";
+    self.offerAvailableOnLabel.text = serviceItem.offerAvailableOn;
     
-    return nil;
+    if ([[serviceItem.serviceName lowercaseString] isEqualToString:@"hot stone"]) {
+        [self.reserveButton setEnabled:YES];
+    }
+    else {
+        [self.reserveButton setEnabled:NO];
+    }
 }
 
+- (void)updatePageControlIndicator:(NSInteger) tag {
+    UIView *pageControlIndicator = [self.pageControlContainer viewWithTag:tag];
+    if (self.selectedPageControlIndicator) {
+        self.selectedPageControlIndicator.backgroundColor = [UIColor grayColor];
+    }
+    if (pageControlIndicator) {
+        pageControlIndicator.backgroundColor = [UIColor whiteColor];
+        self.selectedPageControlIndicator = pageControlIndicator;
+    }
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -231,7 +241,12 @@
     }
     
     cell.textLabel.text = [self.tableViewServicesArray objectAtIndex:indexPath.row];
-    cell.textLabel.font = [IonIcons fontWithSize:20.0f];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Regular" size:15.0f];
+    cell.textLabel.textColor = [UIColor colorWithRed:15/255 green:20/255 blue:46/255 alpha:1];
+    cell.textLabel.adjustsFontSizeToFitWidth=YES;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = false;
+    cell.separatorInset = UIEdgeInsetsZero;
     
     if (indexPath.row == 2) {
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
@@ -247,31 +262,40 @@
     
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 50;
+    return self.servicesTableViewHeightConstraint.constant/5;
     
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    /*
+     Reservation option available only for the hot stone massage
+     */
     if (indexPath.row == 2) {
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self goToReservation];
     }
 }
 
+/*
+    reserve button action (this method called only for hot stone massage
+ */
 - (IBAction)reserveButtonAction:(id)sender {
     [self goToReservation];
 }
 
-
-
+/*
+   Navigate to the reservation view controller
+ */
 - (void)goToReservation {
     ReservationViewController *reservationViewController = (ReservationViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ReservationViewController"];
     
     [self.navigationController pushViewController:reservationViewController animated:YES];
     
 }
-
 
 
 @end
