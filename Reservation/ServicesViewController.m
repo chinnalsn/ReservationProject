@@ -85,9 +85,9 @@
 }
 
 - (void)getServiceInfo {
-    Service *mothersDayService = [[Service alloc] initWithOffer:@"$50 OFF" service:@"Mother's Day" available:@"AVAILABLE MAY 1 - 16" imageName:@"service2.jpg"];
-    Service *hotStoneService = [[Service alloc] initWithOffer:@"20% OFF" service:@"Hot Stone" available:@"AVAILABLE MAY 1 - 16" imageName:@"service3.jpg"];
-    Service *deepTissueService = [[Service alloc] initWithOffer:@"10% OFF" service:@"Deep Tissue" available:@"AVAILABLE APRIL 10 - 28" imageName:@"service1.jpg"];
+    Service *mothersDayService = [[Service alloc] initWithOffer:@"$50 OFF" service:@"Mother's Day" available:@"AVAILABLE MAY 1 - 16" imageName:@"MothersDay.png"];
+    Service *hotStoneService = [[Service alloc] initWithOffer:@"20% OFF" service:@"Hot Stone" available:@"AVAILABLE MAY 1 - 16" imageName:@"HotStone.png"];
+    Service *deepTissueService = [[Service alloc] initWithOffer:@"10% OFF" service:@"Deep Tissue" available:@"AVAILABLE APRIL 10 - 28" imageName:@"DeepTissue.png"];
     
     self.servicesList = @[mothersDayService, hotStoneService, deepTissueService];
 }

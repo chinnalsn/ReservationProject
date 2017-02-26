@@ -16,6 +16,9 @@
 		943582F61E5EBE7E00C5EADE /* ReservationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 943582F51E5EBE7E00C5EADE /* ReservationUtilities.m */; };
 		943583001E6233CC00C5EADE /* hot-stone.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 943582FF1E6233CC00C5EADE /* hot-stone.tiff */; };
 		943583181E6296E700C5EADE /* CalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943583171E6296E700C5EADE /* CalenderViewController.m */; };
+		9435831E1E62BDA200C5EADE /* DeepTissue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9435831B1E62BDA200C5EADE /* DeepTissue.png */; };
+		9435831F1E62BDA300C5EADE /* HotStone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9435831C1E62BDA200C5EADE /* HotStone.png */; };
+		943583201E62BDA300C5EADE /* MothersDay.png in Resources */ = {isa = PBXBuildFile; fileRef = 9435831D1E62BDA200C5EADE /* MothersDay.png */; };
 		94D5579A1E57D358002CA679 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557991E57D358002CA679 /* main.m */; };
 		94D5579D1E57D358002CA679 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5579C1E57D358002CA679 /* AppDelegate.m */; };
 		94D557A31E57D358002CA679 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94D557A11E57D358002CA679 /* Main.storyboard */; };
@@ -30,9 +33,6 @@
 		94D557D91E58CD45002CA679 /* ReservationsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557D81E58CD45002CA679 /* ReservationsContainerViewController.m */; };
 		94D557DD1E5910E4002CA679 /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557DC1E5910E4002CA679 /* Service.m */; };
 		94D557E01E592940002CA679 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557DF1E592940002CA679 /* ReservationViewController.m */; };
-		94D557E41E597870002CA679 /* service1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94D557E11E597870002CA679 /* service1.jpg */; };
-		94D557E51E597870002CA679 /* service2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94D557E21E597870002CA679 /* service2.jpg */; };
-		94D557E61E597870002CA679 /* service3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94D557E31E597870002CA679 /* service3.jpg */; };
 		94D557E91E5989BD002CA679 /* ServiceDaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557E81E5989BD002CA679 /* ServiceDaysViewController.m */; };
 		94D557EC1E598D8D002CA679 /* ServiceTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D557EB1E598D8D002CA679 /* ServiceTimeViewController.m */; };
 /* End PBXBuildFile section */
@@ -53,6 +53,9 @@
 		943582FF1E6233CC00C5EADE /* hot-stone.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "hot-stone.tiff"; sourceTree = "<group>"; };
 		943583161E6296E700C5EADE /* CalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalenderViewController.h; sourceTree = "<group>"; };
 		943583171E6296E700C5EADE /* CalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalenderViewController.m; sourceTree = "<group>"; };
+		9435831B1E62BDA200C5EADE /* DeepTissue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeepTissue.png; sourceTree = "<group>"; };
+		9435831C1E62BDA200C5EADE /* HotStone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HotStone.png; sourceTree = "<group>"; };
+		9435831D1E62BDA200C5EADE /* MothersDay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MothersDay.png; sourceTree = "<group>"; };
 		94D557951E57D358002CA679 /* Reservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D557991E57D358002CA679 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94D5579B1E57D358002CA679 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,9 +80,6 @@
 		94D557DC1E5910E4002CA679 /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		94D557DE1E592940002CA679 /* ReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
 		94D557DF1E592940002CA679 /* ReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
-		94D557E11E597870002CA679 /* service1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = service1.jpg; sourceTree = "<group>"; };
-		94D557E21E597870002CA679 /* service2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = service2.jpg; sourceTree = "<group>"; };
-		94D557E31E597870002CA679 /* service3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = service3.jpg; sourceTree = "<group>"; };
 		94D557E71E5989BD002CA679 /* ServiceDaysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDaysViewController.h; sourceTree = "<group>"; };
 		94D557E81E5989BD002CA679 /* ServiceDaysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDaysViewController.m; sourceTree = "<group>"; };
 		94D557EA1E598D8D002CA679 /* ServiceTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTimeViewController.h; sourceTree = "<group>"; };
@@ -125,6 +125,7 @@
 		943583021E627F1300C5EADE /* Screen2 */ = {
 			isa = PBXGroup;
 			children = (
+				943583191E62BD5200C5EADE /* Images */,
 				94D557CE1E58351A002CA679 /* ServicesViewController.h */,
 				94D557CF1E58351A002CA679 /* ServicesViewController.m */,
 				94D557C21E5830B5002CA679 /* ServicePageItemViewController.h */,
@@ -138,6 +139,7 @@
 		943583031E627F1D00C5EADE /* Screen3 */ = {
 			isa = PBXGroup;
 			children = (
+				9435831A1E62BD7200C5EADE /* Images */,
 				94D557DE1E592940002CA679 /* ReservationViewController.h */,
 				94D557DF1E592940002CA679 /* ReservationViewController.m */,
 				94D557E71E5989BD002CA679 /* ServiceDaysViewController.h */,
@@ -154,6 +156,24 @@
 				943583171E6296E700C5EADE /* CalenderViewController.m */,
 			);
 			name = Screen3;
+			sourceTree = "<group>";
+		};
+		943583191E62BD5200C5EADE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9435831B1E62BDA200C5EADE /* DeepTissue.png */,
+				9435831C1E62BDA200C5EADE /* HotStone.png */,
+				9435831D1E62BDA200C5EADE /* MothersDay.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		9435831A1E62BD7200C5EADE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				943582FF1E6233CC00C5EADE /* hot-stone.tiff */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		94D5578C1E57D358002CA679 = {
@@ -177,10 +197,6 @@
 		94D557971E57D358002CA679 /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
-				943582FF1E6233CC00C5EADE /* hot-stone.tiff */,
-				94D557E11E597870002CA679 /* service1.jpg */,
-				94D557E21E597870002CA679 /* service2.jpg */,
-				94D557E31E597870002CA679 /* service3.jpg */,
 				94D5579B1E57D358002CA679 /* AppDelegate.h */,
 				94D5579C1E57D358002CA679 /* AppDelegate.m */,
 				94D557A11E57D358002CA679 /* Main.storyboard */,
@@ -290,12 +306,12 @@
 				943582DA1E5ABEDF00C5EADE /* TimeView.xib in Resources */,
 				94D557C11E57DBBA002CA679 /* ReservationView.xib in Resources */,
 				94D557A81E57D358002CA679 /* Assets.xcassets in Resources */,
+				9435831E1E62BDA200C5EADE /* DeepTissue.png in Resources */,
+				943583201E62BDA300C5EADE /* MothersDay.png in Resources */,
 				943583001E6233CC00C5EADE /* hot-stone.tiff in Resources */,
-				94D557E61E597870002CA679 /* service3.jpg in Resources */,
+				9435831F1E62BDA300C5EADE /* HotStone.png in Resources */,
 				94D557A31E57D358002CA679 /* Main.storyboard in Resources */,
 				943582D21E5A972900C5EADE /* DayView.xib in Resources */,
-				94D557E51E597870002CA679 /* service2.jpg in Resources */,
-				94D557E41E597870002CA679 /* service1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
