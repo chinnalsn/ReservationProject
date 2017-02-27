@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *partySizeDatePicker;
 @property (strong, nonatomic) NSArray *partySizeArray;
 @property (strong, nonatomic) NSString *partySize;
+@property (strong, nonatomic) NSString *tempPartySize;
 @property (strong, nonatomic) ServiceDaysViewController * serviceDaysViewController;
 
 @end
@@ -120,6 +121,7 @@
 }
 
 - (IBAction)partySizeSelectionDoneAction:(id)sender {
+    self.partySize = self.tempPartySize;
     self.partySizeLabel.text = self.partySize;
     [self showPicker:NO];
 }
@@ -149,7 +151,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.partySize = self.partySizeArray[row];
+    self.tempPartySize = self.partySizeArray[row];
 }
 
 
